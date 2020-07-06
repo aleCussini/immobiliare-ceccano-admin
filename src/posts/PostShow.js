@@ -3,7 +3,7 @@ import React from "react";
 
 export const PostShow = props => {
     return (
-        <Show {...props}>
+        <Show title={<PostTitle/>} {...props}>
             <SimpleShowLayout>
                 <TextField source="address"/>
                 <TextField source="content"/>
@@ -16,3 +16,7 @@ export const PostShow = props => {
         </Show>
     )
 }
+
+const PostTitle = ({record}) => {
+    return <span>Dettagli {record ? `${record.title}` : ''}</span>;
+};
