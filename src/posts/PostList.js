@@ -10,7 +10,7 @@ export const PostList = props => {
                 <TextField source="content" label={"Descrizione"}/>
                 <NumberField source="price" label={"Prezzo"}
                              options={{style: 'currency', currency: 'EUR'}}/>
-                <TextField source="scope" label={"Tipo"}/>
+                {/*<TextField source="scope" label={"Tipo"}/> */}
                 <TextField source="title" label={"Titolo"}/>
                 <DateField source="update" showTime={true}/>
             </Datagrid>

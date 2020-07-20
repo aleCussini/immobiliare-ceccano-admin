@@ -9,7 +9,7 @@ export const PostShow = props => {
                 <TextField source="content"/>
                 <ImageField source="image.src" label={"Anteprima"}/>
                 <NumberField source="price" options={{style: 'currency', currency: 'EUR'}}/>
-                <TextField source="scope"/>
+                <TextField source="address"/>
                 <TextField source="title"/>
                 <DateField source="update" showTime={true}/>
             </SimpleShowLayout>

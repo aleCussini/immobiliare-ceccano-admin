@@ -10,7 +10,8 @@ export const PostForm = props => {
             </ImageInput>
             <TextInput source={"title"}/>
             <TextInput source={"content"}/>
-            <TextInput source={"scope"}/>
+            {/* <TextInput source={"scope"}/> */}
+            <TextInput source={"address"}/>
             <NumberInput source={"price"} options={{currency: 'EUR'}}/>
         </SimpleForm>
     )
