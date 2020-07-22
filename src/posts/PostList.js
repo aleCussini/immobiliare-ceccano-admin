@@ -7,7 +7,7 @@ export const PostList = props => {
             <Datagrid rowClick={"show"}>
                 <ImageField source="image.src" label={"Anteprima"}/>
                 <TextField source="address" label={"Indirizzo"}/>
-                <TextField source="content" label={"Descrizione"}/>
+                {/*<TextField source="content" label={"Descrizione"}/>*/}
                 <NumberField source="price" label={"Prezzo"}
                              options={{style: 'currency', currency: 'EUR'}}/>
                 {/*<TextField source="scope" label={"Tipo"}/> */}

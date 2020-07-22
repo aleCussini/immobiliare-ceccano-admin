@@ -13,6 +13,9 @@ export const PostForm = props => {
             {/* <TextInput source={"scope"}/> */}
             <TextInput source={"address"}/>
             <NumberInput source={"price"} options={{currency: 'EUR'}}/>
+            <NumberInput source={"squaremeters"}/>
+            <NumberInput source={"bathrooms"}/>
+            <NumberInput source={"rooms"} />
         </SimpleForm>
     )
 }
