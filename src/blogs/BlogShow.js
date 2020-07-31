@@ -1,4 +1,4 @@
-import {ImageField, Show, SimpleShowLayout, TextField, BooleanInput} from "react-admin";
+import {ImageField, Show, SimpleShowLayout, TextField} from "react-admin";
 import React from "react";
 
 export const BlogShow = props => {

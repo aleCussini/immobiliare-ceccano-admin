@@ -1,4 +1,4 @@
-import {Datagrid, ImageField, List, TextField, NullableBooleanInput } from "react-admin";
+import {Datagrid, ImageField, List, TextField} from "react-admin";
 import React from "react";
 
 export const BlogList = props => {

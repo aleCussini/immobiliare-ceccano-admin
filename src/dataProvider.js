@@ -67,20 +67,24 @@ export const myDataProvider = {
 
         const newPicture = params.data.image.rawFile instanceof File ? params.data.image : null
 
-        return Promise.resolve(convertFileToBase64(newPicture))
-            .then(picture64 => ({
-                    src: picture64,
-                    title: `${params.data.title}`,
-                })
-            )
-            .then(transformedNewPicture =>
-                dataProvider.update(resource, {
-                    ...params,
-                    data: {
-                        ...params.data,
-                        image: transformedNewPicture,
-                    },
-                })
-            );
+        if (newPicture) {
+            return Promise.resolve(convertFileToBase64(newPicture))
+                .then(picture64 => ({
+                        src: picture64,
+                        title: `${params.data.title}`,
+                    })
+                )
+                .then(transformedNewPicture =>
+                    dataProvider.update(resource, {
+                        ...params,
+                        data: {
+                            ...params.data,
+                            image: transformedNewPicture,
+                        },
+                    })
+                );
+        } else {
+            return dataProvider.update(resource, params);
+        }
     },
 }

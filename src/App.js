@@ -10,7 +10,7 @@ import {myDataProvider} from "./dataProvider";
 
 const PostEdit = props => {
     return (
-        <Edit {...props}>
+        <Edit {...props} title={"Modifica Annuncio"}>
             <PostForm/>
         </Edit>
     )
@@ -18,7 +18,7 @@ const PostEdit = props => {
 
 const PostCreate = props => {
     return (
-        <Create {...props}>
+        <Create {...props} title={"Creazione Annuncio"}>
             <PostForm/>
         </Create>
     )
