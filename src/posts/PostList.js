@@ -5,13 +5,13 @@ export const PostList = props => {
     return (
         <List {...props} title={"Articoli"}>
             <Datagrid rowClick={"show"}>
+            <TextField source="title" label={"Titolo"}/>
                 <ImageField source="image.src" label={"Anteprima"}/>
                 <TextField source="address" label={"Indirizzo"}/>
                 {/*<TextField source="content" label={"Descrizione"}/>*/}
                 <NumberField source="price" label={"Prezzo"}
                              options={{style: 'currency', currency: 'EUR'}}/>
                 {/*<TextField source="scope" label={"Tipo"}/> */}
-                <TextField source="title" label={"Titolo"}/>
                 <DateField source="update" showTime={true}/>
             </Datagrid>
         </List>
