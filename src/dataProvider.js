@@ -20,7 +20,9 @@ const convertFileToBase64 = file =>
             reader.onload = () => resolve(reader.result);
             reader.onerror = reject;
 
-            reader.readAsDataURL(file.rawFile);
+            if (file != null) {
+                reader.readAsDataURL(file.rawFile);
+            }
         }
     );
 
