@@ -39,6 +39,20 @@ export const myDataProvider = {
 
         const newPicture = params.data.image.rawFile instanceof File ? params.data.image : null
 
+        const galleryToConvert = params.data.gallery
+        const gallery64 = []
+
+        for (let i = 0; i < galleryToConvert.length; i++) {
+            let element = galleryToConvert[i];
+            const newElement = element.rawFile instanceof File ? element : null
+            Promise.resolve(convertFileToBase64(newElement))
+                .then(element64 => ({
+                    src: element64,
+                    title: `${params.data.title}` + i
+                }))
+                .then(transformedNewElement => gallery64.push(transformedNewElement))
+        }
+
         return Promise.resolve(convertFileToBase64(newPicture))
             .then(picture64 => ({
                     src: picture64,
@@ -51,6 +65,7 @@ export const myDataProvider = {
                     data: {
                         ...params.data,
                         image: transformedNewPicture,
+                        gallery: gallery64
                     },
                 })
             );
@@ -66,6 +81,20 @@ export const myDataProvider = {
         console.log('params', params)
 
         const newPicture = params.data.image.rawFile instanceof File ? params.data.image : null
+
+        const galleryToConvert = params.data.gallery
+        const gallery64 = []
+
+        for (let i = 0; i < galleryToConvert.length; i++) {
+            let element = galleryToConvert[i];
+            const newElement = element.rawFile instanceof File ? element : null
+            Promise.resolve(convertFileToBase64(newElement))
+                .then(element64 => ({
+                    src: element64,
+                    title: `${params.data.title}` + i
+                }))
+                .then(transformedNewElement => gallery64.push(transformedNewElement))
+        }
 
         if (newPicture) {
             return Promise.resolve(convertFileToBase64(newPicture))
