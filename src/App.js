@@ -6,6 +6,9 @@ import {PostShow} from "./posts/PostShow";
 import {BlogForm} from "./blogs/BlogForm";
 import {BlogList} from "./blogs/BlogList";
 import {BlogShow} from "./blogs/BlogShow";
+import {TextForm} from "./texts/TextForm";
+import {TextList} from "./texts/TextList";
+import {TextShow} from "./texts/TextShow";
 import {myDataProvider} from "./dataProvider";
 
 const PostEdit = props => {
@@ -40,6 +43,22 @@ const BlogCreate = props => {
     )
 }
 
+const TextEdit = props => {
+    return (
+        <Edit {...props}>
+            <TextForm/>
+        </Edit>
+    )
+}
+
+const TextCreate = props => {
+    return (
+        <Create {...props}>
+            <TextForm/>
+        </Create>
+    )
+}
+
 function App() {
     return (
         <Admin title="Mantua Admin" dataProvider={myDataProvider}>
@@ -58,6 +77,14 @@ function App() {
                 edit={BlogEdit}
                 show={BlogShow}
                 create={BlogCreate}
+            />
+            <Resource
+                name={"texts"}
+                options={{label: 'Testi'}}
+                list={TextList}
+                edit={TextEdit}
+                show={TextShow}
+                create={TextCreate}
             />
         </Admin>
     );
