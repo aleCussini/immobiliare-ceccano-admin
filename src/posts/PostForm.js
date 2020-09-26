@@ -16,12 +16,8 @@ export const PostForm = props => {
             {/* <TextInput source={"scope"}/> */}
             <TextInput source={"address"}/>
             <SelectInput label ='Tipo' source = "type" choices={[
-                { id: '1', name: 'Villetta' },
-                { id: '2', name: 'Appartamento' },
-                { id: '3', name: 'Casa Indipendente' },
-                { id: '4', name: 'Monolocale' },
-                { id: '5', name: 'Bilocale' },
-                { id: '6', name: 'Trilocale' },
+                { id: '1', name: 'Appartamento' },
+                { id: '2', name: 'Indipendente' }
             ]} />
             <NumberInput source={"price"} options={{currency: 'EUR'}}/>
             <NumberInput source={"squaremeters"}/>

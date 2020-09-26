@@ -18,8 +18,12 @@ export const PostShow = props => {
                 <NumberField source={"rooms"} />
                 <SelectField label='Riscaldamento' source = "heating" choices={[
                 { id: 'true', name: 'Si' },
-                { id: 'False', name: 'No' },
-            ]} />
+                { id: 'False', name: 'No' }
+                ]} />
+                <SelectField label='Tipo' source = "type" choices={[
+                { id: '1', name: 'Appartamento' },
+                { id: '2', name: 'Indipendente' }
+                ]}/>
             </SimpleShowLayout>
         </Show>
     )
