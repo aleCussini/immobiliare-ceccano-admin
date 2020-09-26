@@ -20,21 +20,10 @@ export const PostForm = props => {
             <RichTextInput source={"content"}/>
             {/* <TextInput source={"scope"}/> */}
             <TextInput source={"address"}/>
-<<<<<<< HEAD
             <SelectInput label ='Tipo' source = "type" choices={[
                 { id: '1', name: 'Appartamento' },
                 { id: '2', name: 'Indipendente' }
             ]} />
-=======
-            <SelectInput label='Tipo' source="type" choices={[
-                {id: '1', name: 'Villetta'},
-                {id: '2', name: 'Appartamento'},
-                {id: '3', name: 'Casa Indipendente'},
-                {id: '4', name: 'Monolocale'},
-                {id: '5', name: 'Bilocale'},
-                {id: '6', name: 'Trilocale'},
-            ]}/>
->>>>>>> 6b7b7bf56655d3b1e6c71b4387dd1f52d00c9480
             <NumberInput source={"price"} options={{currency: 'EUR'}}/>
             <NumberInput source={"squaremeters"}/>
             <NumberInput source={"bathrooms"}/>
