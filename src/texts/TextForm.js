@@ -5,7 +5,9 @@ import React from "react";
 export const TextForm = props => {
     return (
         <SimpleForm {...props}>
-            <RichTextInput source={"content"}/>
+            <RichTextInput source={"richContent"}/>
+            <TextInput fullWidth="true" source={"content"}/>
+            <TextInput fullWidth="true" source={"scope"} />
         </SimpleForm>
     )
 }

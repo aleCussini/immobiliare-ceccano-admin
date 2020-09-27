@@ -17,7 +17,7 @@ export const PostForm = props => {
             <TextInput source={"title"}/>
             <TextInput source={"city"}/>
             <TextInput source={"province"}/>
-            <RichTextInput source={"content"}/>
+            <RichTextInput fullWidth="true" source={"content"}/>
             {/* <TextInput source={"scope"}/> */}
             <TextInput source={"address"}/>
             <SelectInput label ='Tipo' source = "type" choices={[
