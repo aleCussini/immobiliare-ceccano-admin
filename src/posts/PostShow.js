@@ -1,10 +1,11 @@
-import {DateField, ImageField, NumberField, Show, SimpleShowLayout, TextField, SelectField} from "react-admin";
+import {DateField, BooleanField, ImageField, NumberField, Show, SimpleShowLayout, TextField, SelectField} from "react-admin";
 import React from "react";
 
 export const PostShow = props => {
     return (
         <Show title={<PostTitle/>} {...props}>
             <SimpleShowLayout>
+                <BooleanField source="starred" label={"Preferito"} />
                 <ImageField source="image.src" label={"Anteprima"}/>
                 <ImageField source="gallery" src={"src"} label={"Galleria"}/>
                 <TextField source="content" label={"Descrizione"}/>

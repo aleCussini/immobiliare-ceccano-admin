@@ -1,10 +1,13 @@
-import {ImageField, ImageInput, NumberInput, SelectInput, SimpleForm, TextInput} from "react-admin";
+import {ImageField, ImageInput, NumberInput, SelectInput, BooleanInput, SimpleForm, TextInput} from "react-admin";
 import RichTextInput from 'ra-input-rich-text';
 import React from "react";
+import Switch from '@material-ui/core/Switch';
 
 export const PostForm = props => {
     return (
         <SimpleForm {...props}>
+            
+            <BooleanInput source={"starred"}/>
             <ImageInput source="image" label="Immagine Principale" accept="image/*"
                         placeholder={<p>Carica una foto</p>}>
                 <ImageField source={"src"}/>
