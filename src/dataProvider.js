@@ -1,5 +1,10 @@
 import firebaseDataProvider from "ra-data-firebase-client";
 import * as firebase from "firebase";
+import {
+    FirebaseAuthProvider,
+    FirebaseDataProvider,
+    FirebaseRealTimeSaga
+  } from 'react-admin-firebase';
 
 firebase.initializeApp({
     apiKey: "AIzaSyDfIAEEHoXOkawsR-_BevCw8IUGhMUtRU0",
@@ -13,6 +18,7 @@ firebase.initializeApp({
 })
 
 const dataProvider = firebaseDataProvider(firebase, {})
+export const authProvider = FirebaseAuthProvider(firebase,{})
 
 const convertFileToBase64 = file =>
     new Promise((resolve, reject) => {

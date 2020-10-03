@@ -10,6 +10,8 @@ import {TextForm} from "./texts/TextForm";
 import {TextList} from "./texts/TextList";
 import {TextShow} from "./texts/TextShow";
 import {myDataProvider} from "./dataProvider";
+import {authProvider} from "./dataProvider"
+  
 
 const PostEdit = props => {
     return (
@@ -61,7 +63,7 @@ const TextCreate = props => {
 
 function App() {
     return (
-        <Admin title="Mantua Admin" dataProvider={myDataProvider}>
+        <Admin title="Mantua Admin" dataProvider={myDataProvider} authProvider={authProvider}>
             <Resource
                 name={"data"}
                 options={{label: 'Annunci'}}
