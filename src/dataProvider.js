@@ -1,24 +1,9 @@
 import firebaseDataProvider from "ra-data-firebase-client";
-import * as firebase from "firebase";
-import {
-    FirebaseAuthProvider,
-    FirebaseDataProvider,
-    FirebaseRealTimeSaga
-  } from 'react-admin-firebase';
-
-firebase.initializeApp({
-    apiKey: "AIzaSyDfIAEEHoXOkawsR-_BevCw8IUGhMUtRU0",
-    authDomain: "immobiliare-ceccano.firebaseapp.com",
-    databaseURL: "https://immobiliare-ceccano.firebaseio.com",
-    projectId: "immobiliare-ceccano",
-    storageBucket: "immobiliare-ceccano.appspot.com",
-    messagingSenderId: "200899466910",
-    appId: "1:200899466910:web:03c449ef7e954111ca4d8f",
-    measurementId: "G-TWK8XXNWW4"
-})
+import * as firebase from "./firebase";
+import {FirebaseAuthProvider} from 'react-admin-firebase';
 
 const dataProvider = firebaseDataProvider(firebase, {})
-export const authProvider = FirebaseAuthProvider(firebase,{})
+export const authProvider = FirebaseAuthProvider(firebase, {})
 
 const convertFileToBase64 = file =>
     new Promise((resolve, reject) => {
