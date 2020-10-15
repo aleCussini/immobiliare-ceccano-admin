@@ -7,6 +7,7 @@ export const authProvider = FirebaseAuthProvider(firebase, {})
 
 const convertFileToBase64 = file =>
     new Promise((resolve, reject) => {
+            setTimeout(resolve, 1000, file);
             const reader = new FileReader();
             reader.onload = () => resolve(reader.result);
             reader.onerror = reject;
@@ -91,6 +92,7 @@ export const myDataProvider = {
                         title: `${params.data.title}` + i
                     }))
                     .then(transformedNewElement => gallery64.push(transformedNewElement))
+                    .then(() => params.data.gallery = gallery64)
             }
         }
 
