@@ -35,15 +35,18 @@ export const myDataProvider = {
         const galleryToConvert = params.data.gallery
         const gallery64 = []
 
-        for (let i = 0; i < galleryToConvert.length; i++) {
-            let element = galleryToConvert[i];
-            const newElement = element.rawFile instanceof File ? element : null
-            Promise.resolve(convertFileToBase64(newElement))
-                .then(element64 => ({
-                    src: element64,
-                    title: `${params.data.title}` + i
-                }))
-                .then(transformedNewElement => gallery64.push(transformedNewElement))
+
+        if (galleryToConvert) {
+            for (let i = 0; i < galleryToConvert.length; i++) {
+                let element = galleryToConvert[i];
+                const newElement = element.rawFile instanceof File ? element : null
+                Promise.resolve(convertFileToBase64(newElement))
+                    .then(element64 => ({
+                        src: element64,
+                        title: `${params.data.title}` + i
+                    }))
+                    .then(transformedNewElement => gallery64.push(transformedNewElement))
+            }
         }
 
         return Promise.resolve(convertFileToBase64(newPicture))
@@ -78,15 +81,17 @@ export const myDataProvider = {
         const galleryToConvert = params.data.gallery
         const gallery64 = []
 
-        for (let i = 0; i < galleryToConvert.length; i++) {
-            let element = galleryToConvert[i];
-            const newElement = element.rawFile instanceof File ? element : null
-            Promise.resolve(convertFileToBase64(newElement))
-                .then(element64 => ({
-                    src: element64,
-                    title: `${params.data.title}` + i
-                }))
-                .then(transformedNewElement => gallery64.push(transformedNewElement))
+        if (galleryToConvert) {
+            for (let i = 0; i < galleryToConvert.length; i++) {
+                let element = galleryToConvert[i];
+                const newElement = element.rawFile instanceof File ? element : null
+                Promise.resolve(convertFileToBase64(newElement))
+                    .then(element64 => ({
+                        src: element64,
+                        title: `${params.data.title}` + i
+                    }))
+                    .then(transformedNewElement => gallery64.push(transformedNewElement))
+            }
         }
 
         if (newPicture) {
