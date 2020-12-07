@@ -31,7 +31,8 @@ function updateDataInfo(params){
         bathrooms: post.bathrooms, 
         squaremeters: post.squaremeters,
         rooms : post.rooms,
-        address: post.address
+        address: post.address,
+        dataRef: post.id
       });
     
 }
