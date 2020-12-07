@@ -1,6 +1,7 @@
 import firebaseDataProvider from "ra-data-firebase-client";
 import * as firebase from "./firebase";
 import {FirebaseAuthProvider} from 'react-admin-firebase';
+import db from './firebase-db'
 
 const dataProvider = firebaseDataProvider(firebase, {})
 export const authProvider = FirebaseAuthProvider(firebase, {})
@@ -18,6 +19,23 @@ const convertFileToBase64 = file =>
         }
     );
 
+function updateDataInfo(params){
+    console.log('updating datainfo from object: ' + params.id + ' ' + params.data.title)
+    let cardRef = db.ref('card/' + params.id)
+    let post = params.data
+    cardRef.set({
+        title: post.title,
+        starred: post.starred,
+        image : post.image,
+        price : post.price,
+        bathrooms: post.bathrooms, 
+        squaremeters: post.squaremeters,
+        rooms : post.rooms,
+        address: post.address
+      });
+    
+}
+
 export const myDataProvider = {
 
     ...dataProvider,
@@ -27,6 +45,7 @@ export const myDataProvider = {
             // fallback to the default implementation
             return dataProvider.create(resource, params);
         }
+        updateDataInfo(params)
 
         console.log('resource', resource)
         console.log('params', params)
@@ -73,6 +92,9 @@ export const myDataProvider = {
             // fallback to the default implementation
             return dataProvider.update(resource, params);
         }
+
+        console.log('updating datainfo from object: ' + params.key + ' ' + params.data.title)
+        updateDataInfo(params)
 
         console.log('resource', resource)
         console.log('params', params)
