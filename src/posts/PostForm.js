@@ -33,10 +33,11 @@ export const PostForm = props => {
             <NumberInput source={"realsquaremeters"} label={"MQ calpestabili"}/>
             <NumberInput source={"bathrooms"}/>
             <NumberInput source={"rooms"}/>
-            <SelectInput label='Riscaldamento' source="heating" choices={[
-                {id: 'true', name: 'Si'},
-                {id: 'False', name: 'No'},
-            ]}/>
+
+            <TextInput label='Riscaldamento' source="heating"/>
+            <NumberInput source = 'year' label='Anno di Costruzione'/>
+            <TextInput source = 'status' label='stato'></TextInput>
+            <TextField source = 'ape' label='Dati APE'></TextField>
             <SelectInput label='Condizionatori' source="airconditioners" choices={[
                 {id: 'true', name: 'Si'},
                 {id: 'False', name: 'No'},
