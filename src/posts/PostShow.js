@@ -29,10 +29,7 @@ export const PostShow = props => {
                 <NumberField source={"realsquaremeters"} label={"MQ calpestabili"}/>
                 <NumberField source={"bathrooms"}/>
                 <NumberField source={"rooms"}/>
-                <SelectField label='Riscaldamento' source="heating" choices={[
-                    {id: 'true', name: 'Si'},
-                    {id: 'False', name: 'No'}
-                ]}/>
+                <TextField label='Riscaldamento' source="heating"/>
                 <SelectField label='Tipo' source="type" choices={[
                     {id: '1', name: 'Appartamento'},
                     {id: '2', name: 'Indipendente'}

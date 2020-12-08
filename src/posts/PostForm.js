@@ -37,7 +37,7 @@ export const PostForm = props => {
             <TextInput label='Riscaldamento' source="heating"/>
             <NumberInput source = 'year' label='Anno di Costruzione'/>
             <TextInput source = 'status' label='stato'></TextInput>
-            <TextField source = 'ape' label='Dati APE'></TextField>
+            <TextInput source = 'ape' label='Dati APE'></TextInput>
             <SelectInput label='Condizionatori' source="airconditioners" choices={[
                 {id: 'true', name: 'Si'},
                 {id: 'False', name: 'No'},
