@@ -29,7 +29,8 @@ export const PostForm = props => {
                 { id: '2', name: 'Indipendente' }
             ]} />
             <NumberInput source={"price"} options={{currency: 'EUR'}}/>
-            <NumberInput source={"squaremeters"}/>
+            <NumberInput source={"squaremeters"} label={"MQ commerciali"}/>
+            <NumberInput source={"realsquaremeters"} label={"MQ calpestabili"}/>
             <NumberInput source={"bathrooms"}/>
             <NumberInput source={"rooms"}/>
             <SelectInput label='Riscaldamento' source="heating" choices={[

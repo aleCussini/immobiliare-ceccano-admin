@@ -8,6 +8,7 @@ export const PostList = props => {
             <TextField source="title" label={"Titolo"}/>
                 <ImageField source="image.src" label={"Anteprima"} sortable={false}/>
                 <TextField source="address" label={"Indirizzo"}/>
+                <TextField source="city" label={"Comune"}/>
                 {/*<TextField source="content" label={"Descrizione"}/>*/}
                 <NumberField source="price" label={"Prezzo"}
                              options={{style: 'currency', currency: 'EUR'}}/>

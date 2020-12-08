@@ -25,7 +25,8 @@ export const PostShow = props => {
                 <TextField source="address"/>
                 <TextField source="title"/>
                 <DateField source="update" showTime={true}/>
-                <NumberField source={"squaremeters"}/>
+                <NumberField source={"squaremeters"} label={"MQ commerciali"}/>
+                <NumberField source={"realsquaremeters"} label={"MQ calpestabili"}/>
                 <NumberField source={"bathrooms"}/>
                 <NumberField source={"rooms"}/>
                 <SelectField label='Riscaldamento' source="heating" choices={[
