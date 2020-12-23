@@ -2,6 +2,7 @@ import firebaseDataProvider from "ra-data-firebase-client";
 import * as firebase from "./firebase";
 import {FirebaseAuthProvider} from 'react-admin-firebase';
 import db from './firebase-db'
+import storage from './firebase-storage'
 
 const dataProvider = firebaseDataProvider(firebase, {})
 export const authProvider = FirebaseAuthProvider(firebase, {})
@@ -95,6 +96,24 @@ export const myDataProvider = {
             return dataProvider.update(resource, params);
         }
 
+        var galleryToUpload = params.data.gallery;
+        console.log("start uploading gallery for size", galleryToUpload.length )
+        for (let i = 0; i< galleryToUpload.length; i++){
+            var element = galleryToUpload[i]
+            console.log('###--->>>', element)
+            var storageRef = storage.ref('images/' + params.id + '/' + i)
+            storageRef.put(element.rawFile).then(function(snap){
+                console.log("element uploaded ",galleryToUpload[i])
+            });
+        }
+
+        /*var testImageRef = storage.ref('test/sjdakllskj-asdsad')
+        console.log("###--->>> starting storage for: ", params.data.test_src)
+        testImageRef.put(params.data.test_src.rawFile).then(function(snap){
+            console.log("###--->>> ending storage")
+        })*/
+
+
         console.log('updating datainfo from object: ' + params.key + ' ' + params.data.title)
         updateDataInfo(params)
 
@@ -103,10 +122,10 @@ export const myDataProvider = {
 
         const newPicture = params.data.image.rawFile instanceof File ? params.data.image : null
 
-        const galleryToConvert = params.data.gallery
-        const gallery64 = []
+        //const galleryToConvert = params.data.gallery
+        //const gallery64 = []
 
-        if (galleryToConvert) {
+        /*if (galleryToConvert) {
             for (let i = 0; i < galleryToConvert.length; i++) {
                 let element = galleryToConvert[i];
                 const newElement = element.rawFile instanceof File ? element : null
@@ -118,7 +137,7 @@ export const myDataProvider = {
                     .then(transformedNewElement => gallery64.push(transformedNewElement))
                     .then(() => params.data.gallery = gallery64)
             }
-        }
+        }*/
 
         if (newPicture) {
             return Promise.resolve(convertFileToBase64(newPicture))

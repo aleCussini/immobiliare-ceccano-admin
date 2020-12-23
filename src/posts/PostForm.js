@@ -1,4 +1,4 @@
-import {ImageField, ImageInput, NumberInput, SelectInput, BooleanInput, SimpleForm, TextInput} from "react-admin";
+import {ImageField, FileField, FileInput, ImageInput, NumberInput, SelectInput, BooleanInput, SimpleForm, TextInput} from "react-admin";
 import RichTextInput from 'ra-input-rich-text';
 import React from "react";
 import Switch from '@material-ui/core/Switch';
