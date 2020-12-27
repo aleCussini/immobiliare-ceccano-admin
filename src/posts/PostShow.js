@@ -16,8 +16,8 @@ export const PostShow = props => {
         <Show title={<PostTitle/>} {...props}>
             <SimpleShowLayout>
                 <BooleanField source="starred" label={"Preferito"}/>
-                <ImageField source="image.src" label={"Anteprima"}/>
-                <ImageField source="gallery" src={"src"} label={"Galleria"}/>
+                <ImageField source="image" label={"Anteprima"}/>
+                <ImageField source="gallery" label={"Galleria"} src={"url"}/>
                 <RichTextField source="content" label={"Descrizione"}/>
                 <TextField source="city" label="Paese"/>
                 <TextField source="province" label="Provincia"/>
