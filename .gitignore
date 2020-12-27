@@ -24,7 +24,7 @@ yarn-error.log*
 /package-lock.json
 /.idea/
 /.firebase/hosting.YnVpbGQ.cache
-/src/firebase.js
+/src/firebase/firebase.js
 /.firebaserc
 /firebase.json
 public/404.html

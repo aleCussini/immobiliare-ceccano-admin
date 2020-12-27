@@ -1,8 +1,8 @@
 import firebaseDataProvider from "ra-data-firebase-client";
 import * as firebase from "./firebase";
 import {FirebaseAuthProvider} from 'react-admin-firebase';
-import db from './firebase-db'
-import storage from './firebase-storage'
+import db from './firebase/firebase-db'
+import storage from './firebase/firebase-storage'
 
 const dataProvider = firebaseDataProvider(firebase, {
     lazyLoading: {enabled: true},
