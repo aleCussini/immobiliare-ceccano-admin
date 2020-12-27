@@ -1,4 +1,4 @@
-import {DateField, ImageField, NumberField, Show, SimpleShowLayout, TextField, SelectField} from "react-admin";
+import {Show, SimpleShowLayout, TextField} from "react-admin";
 import React from "react";
 
 export const TextShow = props => {

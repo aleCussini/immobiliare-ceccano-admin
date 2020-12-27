@@ -1,22 +1,20 @@
-import {ImageField, FileField, FileInput, ImageInput, NumberInput, SelectInput, BooleanInput, SimpleForm, TextInput} from "react-admin";
+import {ImageField, FileInput, FileField, ImageInput, NumberInput, SelectInput, BooleanInput, SimpleForm, TextInput} from "react-admin";
 import RichTextInput from 'ra-input-rich-text';
 import React from "react";
-import Switch from '@material-ui/core/Switch';
 
 export const PostForm = props => {
     return (
         <SimpleForm {...props}>
-            
             <BooleanInput source={"starred"}/>
             <ImageInput source="image" label="Immagine Principale" accept="image/*"
                         placeholder={<p>Carica una foto</p>}>
                 <ImageField source={"src"}/>
             </ImageInput>
-            <ImageInput source="gallery" label="Galleria Foto" accept="image/*"
+            <FileInput source="gallery" label="Galleria Foto" accept="image/*"
                         multiple={true}
                         placeholder={<p>Carica una foto</p>}>
                 <ImageField source={"src"}/>
-            </ImageInput>
+            </FileInput>
             <TextInput source={"title"}/>
             <TextInput source={"city"}/>
             <TextInput source={"province"}/>
@@ -40,7 +38,7 @@ export const PostForm = props => {
             <TextInput source = 'ape' label='Dati APE'></TextInput>
             <SelectInput label='Condizionatori' source="airconditioners" choices={[
                 {id: 'true', name: 'Si'},
-                {id: 'False', name: 'No'},
+                {id: 'false', name: 'No'},
             ]}/>
         </SimpleForm>
     )

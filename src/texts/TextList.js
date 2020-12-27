@@ -1,4 +1,4 @@
-import {Datagrid, DateField, ImageField, List, NumberField, TextField} from "react-admin";
+import {Datagrid, List, TextField} from "react-admin";
 import React from "react";
 
 export const TextList = props => {
