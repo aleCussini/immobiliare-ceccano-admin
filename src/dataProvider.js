@@ -9,7 +9,7 @@ const dataProvider = firebaseDataProvider(firebase, {
 })
 export const authProvider = FirebaseAuthProvider(firebase, {})
 
-function updateDataInfo(params) {
+function updateDataInfo(params, previewUrl) {
     console.log('updating datainfo from object: ' + params.id + ' ' + params.data.title)
     let cardRef = db.ref('card/' + params.id)
     let post = params.data
@@ -18,39 +18,35 @@ function updateDataInfo(params) {
         starred: post.starred,
         price: post.price,
         bathrooms: post.bathrooms,
+        image: previewUrl,
         squaremeters: post.squaremeters,
         rooms: post.rooms,
         address: post.address,
         dataRef: post.id,
         city: post.city
-    });
+    }).then(value => console.log("card updated", value));
+}
 
+function updatePreview(image, objId) {
+    const previewImage = image.rawFile instanceof File ? image : null
+    let storageRef = storage.ref('preview/' + objId)
+    storageRef.put(previewImage).then(a => console.log("preview element updated", a));
+    return storageRef.getDownloadURL();
 }
 
 function updateGallery(galleryToUpdate, objId) {
+    let galleryUrls = []
     console.log("start uploading gallery for size", galleryToUpdate.length)
     for (let i = 0; i < galleryToUpdate.length; i++) {
         const element = galleryToUpdate[i]
-        console.log('###--->>>', element)
         let storageRef = storage.ref('images/' + objId + '/' + i)
         storageRef.put(element.rawFile).then(function (snap) {
-            console.log("element uploaded ", galleryToUpdate[i])
+            console.log("element uploaded ", snap)
         });
+        galleryUrls.push(storageRef.getDownloadURL())
     }
+    return galleryUrls;
 }
-
-const convertFileToBase64 = file =>
-    new Promise((resolve, reject) => {
-            setTimeout(resolve, 1000, file);
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
-
-            if (file != null) {
-                reader.readAsDataURL(file.rawFile);
-            }
-        }
-    );
 
 export const myDataProvider = {
 
@@ -61,67 +57,56 @@ export const myDataProvider = {
             // fallback to the default implementation
             return dataProvider.create(resource, params);
         }
-        updateDataInfo(params)
 
         console.log('resource', resource)
         console.log('params', params)
 
+        let objId = params.id;
         const galleryToUpdate = params.data.gallery;
+        let galleryUrls = []
         if (galleryToUpdate) {
-            updateGallery(galleryToUpdate, params.id)
+            galleryUrls = updateGallery(galleryToUpdate, objId)
         }
 
-        const previewImage = params.data.image.rawFile instanceof File ? params.data.image : null
-        return Promise.resolve(convertFileToBase64(previewImage))
-            .then(picture64 => ({
-                    src: picture64,
-                    title: `${params.data.title}`,
-                })
-            )
-            .then(transformedNewPicture =>
-                dataProvider.create(resource, {
-                    ...params,
-                    data: {
-                        ...params.data,
-                        image: transformedNewPicture,
-                    },
-                })
-            );
+        let previewUrl = updatePreview(params.data.image, objId);
+
+        updateDataInfo(params, previewUrl)
+
+        return dataProvider.create(resource, {
+            ...params,
+            data: {
+                ...params.data,
+                gallery: galleryUrls,
+                image: previewUrl,
+            },
+        })
     },
 
     update: (resource, params) => {
+        let objId = params.id;
         if (resource !== 'data') {
             // fallback to the default implementation
             return dataProvider.update(resource, params);
         }
 
         const galleryToUpdate = params.data.gallery;
-        updateGallery(galleryToUpdate, params.id)
+        console.log("####gallerytoupdate####", galleryToUpdate)
+        let galleryUrls = updateGallery(galleryToUpdate, objId);
 
-        console.log('updating datainfo from object: ' + params.key + ' ' + params.data.title)
-        updateDataInfo(params)
-
-        console.log('resource', resource)
-        console.log('params', params)
-
-        const previewImage = params.data.image.rawFile instanceof File ? params.data.image : null
+        let previewImage = params.data.image;
+        console.log("####previewtoupdate####", previewImage)
+        let previewUrl = updatePreview(previewImage, objId);
+        updateDataInfo(params, previewUrl)
 
         if (previewImage) {
-            return Promise.resolve(convertFileToBase64(previewImage))
-                .then(picture64 => ({
-                        src: picture64,
-                        title: `${params.data.title}`,
-                    })
-                )
-                .then(transformedNewPicture =>
-                    dataProvider.update(resource, {
-                        ...params,
-                        data: {
-                            ...params.data,
-                            image: transformedNewPicture,
-                        },
-                    })
-                );
+            return dataProvider.update(resource, {
+                ...params,
+                data: {
+                    ...params.data,
+                    gallery: galleryUrls,
+                    image: previewUrl,
+                },
+            })
         } else {
             return dataProvider.update(resource, params);
         }
