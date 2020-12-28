@@ -36,18 +36,20 @@ async function updatePreview(image, objId) {
 
 async function updateGallery(galleryToUpdate, objId) {
     let galleryUrls = []
-    console.log("start uploading gallery for size", galleryToUpdate.length)
-    for (let i = 0; i < galleryToUpdate.length; i++) {
-        const element = galleryToUpdate[i]
-        let storageRef = storage.ref('images/' + objId + '/' + i)
-        await storageRef.put(element.rawFile).then(snap => {
-            console.log("element uploaded ", snap)
-            storageRef.getDownloadURL().then(
-                value => {
-                    console.log("gallery downloadURL", value)
-                    galleryUrls.push({url: value})
-                })
-        });
+    if(galleryToUpdate){
+        console.log("start uploading gallery for size", galleryToUpdate.length)
+        for (let i = 0; i < galleryToUpdate.length; i++) {
+            const element = galleryToUpdate[i]
+            let storageRef = storage.ref('images/' + objId + '/' + i)
+            await storageRef.put(element.rawFile).then(snap => {
+                console.log("element uploaded ", snap)
+                storageRef.getDownloadURL().then(
+                    value => {
+                        console.log("gallery downloadURL", value)
+                        galleryUrls.push({url: value})
+                    })
+            });
+        }
     }
     return galleryUrls;
 }
