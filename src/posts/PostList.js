@@ -6,7 +6,7 @@ export const PostList = props => {
         <List {...props} title={"Articoli"}>
             <Datagrid rowClick={"show"}>
                 <TextField source="title" label={"Titolo"}/>
-                <ImageField source="image" label={"Anteprima"} sortable={false}/>
+                <ImageField source="image.url" label={"Anteprima"} sortable={false}/>
                 <TextField source="address" label={"Indirizzo"}/>
                 <TextField source="city" label={"Comune"}/>
                 {/*<TextField source="content" label={"Descrizione"}/>*/}

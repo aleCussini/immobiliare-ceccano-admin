@@ -1,13 +1,4 @@
-import {
-    BooleanInput,
-    FileInput,
-    ImageField,
-    ImageInput,
-    NumberInput,
-    SelectInput,
-    SimpleForm,
-    TextInput
-} from "react-admin";
+import {BooleanInput, ImageField, ImageInput, NumberInput, SelectInput, SimpleForm, TextInput} from "react-admin";
 import RichTextInput from 'ra-input-rich-text';
 import React from "react";
 
@@ -17,13 +8,13 @@ export const PostForm = props => {
             <BooleanInput source={"starred"}/>
             <ImageInput source="image" label="Immagine Principale" accept="image/*"
                         placeholder={<p>Carica una foto</p>}>
-                <ImageField source={"src"}/>
+                <ImageField source={"url"}/>
             </ImageInput>
-            <FileInput source="gallery" label="Galleria Foto" accept="image/*"
-                       multiple={true}
-                       placeholder={<p>Carica una foto</p>}>
-                <ImageField source={"src"}/>
-            </FileInput>
+            <ImageInput source="gallery" label="Galleria Foto" accept="image/*"
+                        multiple={true}
+                        placeholder={<p>Carica una foto</p>}>
+                <ImageField source={"url"}/>
+            </ImageInput>
             <TextInput source={"title"}/>
             <TextInput source={"city"}/>
             <TextInput source={"province"}/>
