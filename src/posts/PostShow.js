@@ -1,4 +1,5 @@
 import {
+    ArrayField,
     BooleanField,
     DateField,
     ImageField,
@@ -7,6 +8,7 @@ import {
     SelectField,
     Show,
     SimpleShowLayout,
+    SingleFieldList,
     TextField
 } from "react-admin";
 import React from "react";
@@ -17,7 +19,11 @@ export const PostShow = props => {
             <SimpleShowLayout>
                 <BooleanField source="starred" label={"Preferito"}/>
                 <ImageField source="image" label={"Anteprima"}/>
-                <ImageField source="gallery" label={"Galleria"} src={"url"}/>
+                <ArrayField source="gallery">
+                    <SingleFieldList>
+                        <ImageField source="url" label={"Galleria"}/>
+                    </SingleFieldList>
+                </ArrayField>
                 <RichTextField source="content" label={"Descrizione"}/>
                 <TextField source="city" label="Paese"/>
                 <TextField source="province" label="Provincia"/>
