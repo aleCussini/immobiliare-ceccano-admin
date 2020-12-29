@@ -36,7 +36,7 @@ async function updatePreview(image, objId) {
 
 async function updateGallery(galleryToUpdate, objId) {
     let galleryUrls = []
-    if(galleryToUpdate){
+    if (galleryToUpdate) {
         console.log("start uploading gallery for size", galleryToUpdate.length)
         for (let i = 0; i < galleryToUpdate.length; i++) {
             const element = galleryToUpdate[i]
@@ -81,7 +81,7 @@ export const myDataProvider = {
             data: {
                 ...params.data,
                 gallery: galleryUrls,
-                image: previewUrl,
+                image: {url: previewUrl},
             },
         })
     },
@@ -110,7 +110,7 @@ export const myDataProvider = {
                 data: {
                     ...params.data,
                     gallery: galleryUrls,
-                    image: previewUrl,
+                    image: {url: previewUrl},
                 },
             })
         } else {
