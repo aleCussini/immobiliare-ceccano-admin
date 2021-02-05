@@ -34,13 +34,15 @@ async function updatePreview(image, objId) {
     return storageRef.getDownloadURL();
 }
 
-async function updateGallery(galleryToUpdate, objId) {
+async function updateGallery(galleryToUpdate, objId, previousGallery) {
+    let startIndex = previousGallery.length;
     let galleryUrls = []
     if (galleryToUpdate) {
         console.log("start uploading gallery for size", galleryToUpdate.length)
         for (let i = 0; i < galleryToUpdate.length; i++) {
             const element = galleryToUpdate[i]
-            let storageRef = storage.ref('images/' + objId + '/' + i)
+            let storageRef = storage.ref('images/' + objId + '/' + startIndex)
+            startIndex++;
             await storageRef.put(element.rawFile).then(snap => {
                 console.log("element uploaded ", snap)
                 storageRef.getDownloadURL().then(
@@ -51,6 +53,7 @@ async function updateGallery(galleryToUpdate, objId) {
             });
         }
     }
+    galleryUrls.push(previousGallery)
     return galleryUrls;
 }
 
@@ -93,18 +96,33 @@ export const myDataProvider = {
             return dataProvider.update(resource, params);
         }
 
+        
+
         const galleryToUpdate = params.data.gallery;
         console.log("####gallerytoupdate####", galleryToUpdate)
-        let galleryUrls = await updateGallery(galleryToUpdate, objId);
+
+        let gallery = [];
+        galleryToUpdate.forEach( element => {
+            if(element.rawFile){
+                gallery.push(element);
+            }
+        }) ; 
+
+        let previousGallery = params.previousData.gallery ? params.previousData.gallery : []
+        let galleryUrls = await updateGallery(gallery, objId, previousGallery);
         console.log("GALLERY URLS", galleryUrls)
-
         let previewImage = params.data.image;
-        console.log("####previewtoupdate####", previewImage)
-        let previewUrl = await updatePreview(previewImage, objId);
-        console.log("PREVIEW URLS", previewUrl)
-        updateDataInfo(params, previewUrl)
-
+        //da togliere con obbligo di preview (se inserisco articolo senza preview, qui e' null)
+        let previewUrl = ''
         if (previewImage) {
+            if(previewImage.rawFile){
+                console.log("####previewtoupdate####", previewImage)
+                previewUrl = await updatePreview(previewImage, objId);
+                console.log("PREVIEW URLS", previewUrl)
+                updateDataInfo(params, previewUrl)
+            } else {
+                previewUrl = params.data.image.url;
+            }
             return dataProvider.update(resource, {
                 ...params,
                 data: {
